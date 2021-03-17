@@ -4,6 +4,7 @@
 $(function() {
 // ********************* doc ready start ***
 
+
 // * REMOTE DATA SOURCE */
 const itemList = [
 	{ name: 'cat',            prefix: 'fa-', type: 'animal',    family: 'fas' },
@@ -24,6 +25,10 @@ const itemList = [
 	{ name: 'user-secret',    prefix: 'fa-', type: 'user',      family: 'fas' }
 ];
 
+// * LOCAL COLOR SCHEME */
+// default color: position 0 in colorList
+const colorList = ['var(--black)', 'var(--blue)', 'var(--orange)', 'var(--purple)'];
+
 
 // * ------ * Milestone 1 * ------ *
 // Partendo dalla struttura dati che troviamo sotto, 
@@ -36,11 +41,24 @@ displayArrayInContainer(itemList,itemDisplayBox);
 
 // * ------ * Milestone 2 * ------ *
 // Coloriamo le icone per tipo
+const itemColorList = getColoredArray(itemList,colorList);
+
+
+// ! DEBUG !
+console.log(getTypeList(itemList));
+console.log(getColorByType('animal',getTypeList(itemList),colorList));
+console.log(getColorByType('vegetable',getTypeList(itemList),colorList));
+console.log(getColorByType('user',getTypeList(itemList),colorList));
+console.log(getColorByType('pippo',getTypeList(itemList),colorList));
+console.log(itemColorList);
 
 
 
-// * LOCAL COLOR SCHEME */
-const colorList = ['var(--blue)', 'var(--orange)', 'var(--purple)'];
+
+
+
+
+
 
 
 
@@ -78,3 +96,41 @@ function displayArrayInContainer(_array,_container) {
 		`);
 	});
 }
+
+function getColoredArray(_itemList,_colorList) {
+	/**
+	 * returns array of the elements in _itemList
+	 * where each element gets color property by its type
+	 */
+	const coloredItemList = _itemList.map((el) => {
+		// array of types in _itemList
+		const typeList = getTypeList(_itemList);
+		// color matching type for el
+		el.color = getColorByType(el.type,typeList,_colorList)
+		return el;
+	});
+	return coloredItemList;
+}
+
+function getTypeList(_itemList) { 
+	/**
+	 * returns array of types in _itemList
+	 */
+	const typeList = [];
+	_itemList.forEach((el) => {
+		if (!typeList.includes(el.type)) typeList.push(el.type);
+	});
+	return typeList;
+}
+function getColorByType(_type,_typeList,_colorList) {
+	/**
+	 * matches _type position in _typeList and
+	 * returns the color in _colorList with position + 1
+	 * default color: position 0 in _colorList
+	 */
+	const pos = _typeList.indexOf(_type);
+	const col = _colorList[pos + 1];
+	if (col != undefined) return col;
+	else return _colorList[0];
+}
+
