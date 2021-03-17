@@ -20,48 +20,20 @@
 	</head>
 	<body>
 
-		<!------------------------------------------
-
-			Esercizio di oggi: cartella/repo js-es6-icons
-
-			Milestone 1
-			Partendo dalla struttura dati che troviamo sotto, 
-			mostriamo in pagina tutte le icone disponibili come da layout.
-			
-			Milestone 2
-			Coloriamo le icone per tipo
-			
-			Milestone 3
-			Creiamo una select con i tipi di icone e usiamola per filtrare le icone
-
-
-		------------------------------------------->
-
-
 		<div class="flex_cent_row_wrapper">
 			<div class="card">
-
-				<div calss="container">
-
-					<div class="header">
-						<div class="logo">Font Icons</div>
-					</div>
-
-					<div class="search">
-						<label for="type" class="ms_txt_1">Filtra per tipo</label>
-						<select name="type" id="type">
-							<option value="">All</option>
-						</select>
-					</div>
-
-					<div class="item_display_box"></div>
-
+				<div class="header">
+					<div class="logo ms_txt_title">Font Icons</div>
 				</div>
-
+				<div class="search">
+					<label for="type" class="ms_txt_1">Filtra per tipo</label>
+					<select name="type" id="type_selection">
+						<option value="">All</option>
+					</select>
+				</div>
+				<div id="item_display_box"></div>
 			</div> <!-- card -->
 		</div> <!-- flex_cent_row_wrapper -->
-
-
 
 	</body>
 </html>
